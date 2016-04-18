@@ -7,7 +7,8 @@ A research notebook for exploring the usage of `bayespy` for implementing [Gauss
 
 ## Tasks
 
-- [ ] Draw graph of all variables, parameters, and hyperparemeters for GPRN
+- [x] Draw graph of all variables, parameters, and hyperparemeters for GPRN
+  - ![Gaussian process regression network factor graph](resources/gprn-factor-graph.png)
 - [ ] Implement GPRN
   - [ ] Build GPRN framework in `bayespy` for learning hyperparameters
     - [ ] Translate graph into code 
