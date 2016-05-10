@@ -1,1 +1,1 @@
-bayespy
+git+git://github.com/bayespy/bayespy@develop#egg=bayespy
