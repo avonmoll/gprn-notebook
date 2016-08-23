@@ -1,1 +1,2 @@
 bayespy
+seaborn
