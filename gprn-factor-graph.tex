@@ -27,38 +27,38 @@
 
   % f' and sigma^2_f
   \node[latent, above=1.2 of f_hat, xshift=-1cm] (f) {$f'_{nj}$};
-  \node[latent, above=1.2 of f_hat, xshift=2cm] (sigma_f) {$\sigma^2_{f_j}$};
+  \node[latent, above=1.2 of f_hat, xshift=2cm] (sigma_f) {$\tau_{f_j}$};
 
   % W hyperparameters
   \node[const, above=1.2 of w, xshift=-3cm] (W_mean) {$0$} ; %
-  \node[const, above=1.2 of w, xshift=-2cm]  (K_W) {$K_W$} ; %
+  \node[const, above=1.2 of w, xshift=-2cm]  (K_W) {$K_W^{-1}$} ; %
   \node[const, above=of K_W] (theta_w) {$\theta_W$} ; %
   
   % sigma^2_f hyperparameters
-  \node[const, above=1.2 of sigma_f, xshift=2cm] (a_f) {$\alpha_{\sigma^2_{f}}$};
-  \node[const, above=1.2 of sigma_f, xshift=3cm] (b_f) {$\beta_{\sigma^2_{f}}$};
+  \node[const, above=1.2 of sigma_f, xshift=2cm] (a_f) {$\alpha_{\tau_{f}}$};
+  \node[const, above=1.2 of sigma_f, xshift=3cm] (b_f) {$\beta_{\tau_{f}}$};
   
   % f' hyperparameters
   \node[const, above=1.2 of f, xshift=-0.5cm] (f_mean) {$0$};
   \node[det, above=1.2 of f, xshift=0.5cm] (times2) {$\times$};
-  \node[const, above left=1.2 of times2] (K_f) {$K_{f_j}$};
+  \node[const, above left=1.2 of times2] (K_f) {$K_{f_j}^{-1}$};
   \node[latent, above right=1.2 of times2] (a) {$a_j$};
   \node[const, above=1.2 of K_f] (theta_f) {$\theta_{f_j}$};
   \node[const, above=1.7 of a, xshift=-0.5cm] (a_a) {$\alpha_a$};
   \node[const, above=1.7 of a, xshift=0.5cm] (b_a) {$\beta_a$};
   
   % noise
-  \node[latent, left=4cm of y-f]         (sigma_y)   {$\sigma^2_y$}; %
-  \node[const, above=of sigma_y, xshift=-0.5cm] (a_y)  {$\alpha_{\sigma^2_y}$} ; %
-  \node[const, above=of sigma_y, xshift=0.5cm]  (b_y)  {$\beta_{\sigma^2_y}$} ; %
+  \node[latent, left=4cm of y-f]         (sigma_y)   {$\tau_y$}; %
+  \node[const, above=of sigma_y, xshift=-0.5cm] (a_y)  {$\alpha_{\tau_y}$} ; %
+  \node[const, above=of sigma_y, xshift=0.5cm]  (b_y)  {$\beta_{\tau_y}$} ; %
 
   % Factors
   \factor[left=of w] {w-f} {below:$\mathcal{N}$} {W_mean,K_W} {w} ; %
   \factor[above=of f_hat] {f_hat-f} {left:$\mathcal{N}$} {f,sigma_f} {f_hat} ; %
-  \factor[above=of sigma_y] {sigma_y-f} {left:$\Gamma^{-1}$} {a_y,b_y} {sigma_y} ; %
-  \factor[right=of sigma_f] {sigma_f-f} {below:$\Gamma^{-1}$} {a_f,b_f} {sigma_f};
+  \factor[above=of sigma_y] {sigma_y-f} {left:$\Gamma$} {a_y,b_y} {sigma_y} ; %
+  \factor[right=of sigma_f] {sigma_f-f} {below:$\Gamma$} {a_f,b_f} {sigma_f};
   \factor[above=of f] {f-f} {left:$\mathcal{N}$} {f_mean,times2} {f};
-  \factor[above=of a] {a-f} {left:$\Gamma^{-1}$} {a_a,b_a} {a};
+  \factor[above=of a] {a-f} {left:$\Gamma$} {a_a,b_a} {a};
   \factoredge {s,sigma_y} {y-f} {y} ; %
 
   % Edges
